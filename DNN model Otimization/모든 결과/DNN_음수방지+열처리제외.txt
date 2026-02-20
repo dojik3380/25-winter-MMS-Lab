@@ -1,0 +1,112 @@
+DNN+음수방지+열처리(범주형데이터)제외
+
+Try0 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.22 / 평균 0.41 / 표준편차 0.40 / 1오차개수 221 / 1.5오차개수 91 / 계산실패 0
+
+Try1 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 5e-4 / Adam / EarlyStopping(patience=30) 최대오차 4.16 / 평균 0.38 / 표준편차 0.38 / 1오차개수 196 / 1.5오차개수 82 / 계산실패 0
+LR 5e-4
+
+Try2 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 2e-4 / Adam / EarlyStopping(patience=30) 최대오차 4.52 / 평균 0.38 / 표준편차 0.41 / 1오차개수 197 / 1.5오차개수 63 / 계산실패 0
+LR 2e-4
+
+Try3 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.28 / 평균 0.38 / 표준편차 0.38 / 1오차개수 152 / 1.5오차개수 56 / 계산실패 0
+Adam clipnorm=1.0 추가
+
+Try4 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.22 / 평균 0.41 / 표준편차 0.40 / 1오차개수 221 / 1.5오차개수 91 / 계산실패 0
+ReduceLROnPlateau 추가 (LR 1e-3 유지)
+
+Try5 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 5e-4 / Adam / EarlyStopping(patience=30) 최대오차 4.11 / 평균 0.37 / 표준편차 0.37 / 1오차개수 173 / 1.5오차개수 64 / 계산실패 0
+ReduceLROnPlateau 추가 + LR 5e-4
+
+Try6 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 16 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 5.64 / 평균 0.31 / 표준편차 0.35 / 1오차개수 95 / 1.5오차개수 31 / 계산실패 0
+batch_size 16
+
+Try7 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 64 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.82 / 평균 0.36 / 표준편차 0.32 / 1오차개수 150 / 1.5오차개수 47 / 계산실패 0
+batch_size 64
+
+Try8 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=15) 최대오차 4.22 / 평균 0.41 / 표준편차 0.40 / 1오차개수 221 / 1.5오차개수 91 / 계산실패 0
+EarlyStopping patience 15
+
+Try9 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=50) 최대오차 4.44 / 평균 0.29 / 표준편차 0.34 / 1오차개수 129 / 1.5오차개수 62 / 계산실패 0
+EarlyStopping patience 50
+
+Try10 : Baseline: 128 d0.1 / 64 d0.05 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.72 / 평균 0.39 / 표준편차 0.35 / 1오차개수 188 / 1.5오차개수 59 / 계산실패 0
+dropout 0.1 / 0.05
+
+Try11 : Baseline: 128 d0.3 / 64 d0.15 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.23 / 평균 0.40 / 표준편차 0.37 / 1오차개수 200 / 1.5오차개수 73 / 계산실패 0
+dropout 0.3 / 0.15
+
+Try12 : Baseline: 128 d0.0 / 64 d0.0 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.75 / 평균 0.42 / 표준편차 0.38 / 1오차개수 251 / 1.5오차개수 78 / 계산실패 0
+dropout 제거 (0.0 / 0.0)
+
+Try13 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.41 / 평균 0.40 / 표준편차 0.39 / 1오차개수 209 / 1.5오차개수 84 / 계산실패 0
+L2 1e-5 (kernel_regularizer)
+
+Try14 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.17 / 평균 0.37 / 표준편차 0.35 / 1오차개수 164 / 1.5오차개수 56 / 계산실패 0
+L2 1e-4 (kernel_regularizer)
+
+Try15 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.15 / 평균 0.39 / 표준편차 0.38 / 1오차개수 197 / 1.5오차개수 76 / 계산실패 0
+L2 5e-4 (kernel_regularizer)
+
+Try16 : Baseline: 256 d0.2 / 128 d0.1 / 64 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 6.96 / 평균 0.41 / 표준편차 0.44 / 1오차개수 196 / 1.5오차개수 88 / 계산실패 0
+노드 증가 (256 / 128 / 64)
+
+Try17 : Baseline: 64 d0.2 / 32 d0.1 / 16 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 2.91 / 평균 0.41 / 표준편차 0.31 / 1오차개수 186 / 1.5오차개수 73 / 계산실패 0
+노드 감소 (64 / 32 / 16)
+
+Try18 : Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.62 / 평균 0.35 / 표준편차 0.31 / 1오차개수 120 / 1.5오차개수 40 / 계산실패 0
+Dense(16) 층 추가
+
+Try19 : Baseline: 128 d0.2 / 64 d0.1 / 32 / LeakyReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.00 / 평균 0.37 / 표준편차 0.34 / 1오차개수 157 / 1.5오차개수 54 / 계산실패 0
+활성함수 ReLU → LeakyReLU (α=0.01)
+
+Try20 : Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.22 / 평균 0.41 / 표준편차 0.40 / 1오차개수 221 / 1.5오차개수 91 / 계산실패 0
+epochs 상한 800 (EarlyStopping 유지)
+
+Try21 : Try18 + Try6 + Try15 
+Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 16 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 4.55 / 평균 0.41 / 표준편차 0.36 / 1오차개수 210 / 1.5오차개수 40 / 계산실패 0
+Try18 + Try6 + Try15 조합 (Dense(16) 추가 + batch_size 16 + L2 5e-4 추가)
+
+Try22 : Try18 + Try4 + Try15 
+Baseline: 128 d0.2 / 64 d0.1 / 32 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.62 / 평균 0.38 / 표준편차 0.34 / 1오차개수 191 / 1.5오차개수 61 / 계산실패 0
+Try18 + Try4 + Try15 조합 (Dense(16) 추가 + ReduceLROnPlateau 추가 + L2 5e-4 추가)
+
+Try23 : Try18 + Try15
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.68 / 평균 0.37 / 표준편차 0.32 / 1오차개수 143 / 1.5오차개수 45 / 계산실패 0
+(Dense(16) 추가 + L2 5e-4 추가)
+
+Try24 : Try18 + Try6 + Try14
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / ReLU / batch 16 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.85 / 평균 0.41 / 표준편차 0.34 / 1오차개수 193 / 1.5오차개수 43 / 계산실패 0
+(Dense(16) 추가 + batch_size 16 + L2 1e-4 추가)
+
+Try25 : Try18 + Try1
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / ReLU / batch 32 / LR 5e-4 / Adam / EarlyStopping(patience=30) 최대오차 4.10 / 평균 0.37 / 표준편차 0.35 / 1오차개수 151 / 1.5오차개수 57 / 계산실패 0
+(Dense(16) 추가 + LR 5e-4)
+
+Try26 : Try18 + Try19
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / LeakyReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.61 / 평균 0.35 / 표준편차 0.30 / 1오차개수 128 / 1.5오차개수 36 / 계산실패 0
+(Dense(16) 추가 + 활성함수 LeakyReLU(α=0.01))
+
+Try27 : Try18 + Try10
+Baseline: 128 d0.1 / 64 d0.05 / 32 / 16 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 2.58 / 평균 0.38 / 표준편차 0.31 / 1오차개수 185 / 1.5오차개수 62 / 계산실패 0
+(Dense(16) 추가 + dropout 감소 0.1 / 0.05)
+
+Try28 : Try18 + Try20
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / ReLU / batch 32 / LR 1e-3 / Adam / EarlyStopping(patience=30) 최대오차 3.62 / 평균 0.35 / 표준편차 0.31 / 1오차개수 120 / 1.5오차개수 40 / 계산실패 0
+(Dense(16) 추가 + epochs 상한 800)
+
+Try29 : Try18 + Try6 + Try1
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / ReLU / batch 16 / LR 5e-4 / Adam / EarlyStopping(patience=30) 최대오차 3.26 / 평균 0.37 / 표준편차 0.32 / 1오차개수 163 / 1.5오차개수 57 / 계산실패 0
+(Dense(16) 추가 + batch_size 16 + LR 5e-4)
+
+Try30 : Try18 + Try6 + Try14 + Try1 
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / ReLU / batch 16 / LR 5e-4 / Adam / EarlyStopping(patience=30) 최대오차 2.85 / 평균 0.36 / 표준편차 0.30 / 1오차개수 144 / 1.5오차개수 50 / 계산실패 0
+(Dense(16) 추가 + batch_size 16 + L2 1e-4 + LR 5e-4)
+
+Try31 : Try18 + Try6 + Try14 + Try1 + Try19
+Baseline: 128 d0.2 / 64 d0.1 / 32 / 16 / LeakyReLU / batch 16 / LR 5e-4 / Adam / EarlyStopping(patience=30) 최대오차 4.11 / 평균 0.36 / 표준편차 0.36 / 1오차개수 140 / 1.5오차개수 71 / 계산실패 0
+(Dense(16) 추가 + batch_size 16 + L2 1e-4 + LR 5e-4 + 활성함수 LeakyReLU(α=0.01))
+
+Try1~5 : 학습안정화 / Try6~9 : batch, 훈련설정 / Try10~12 : Dropout 조정 / Try13~15 : L2 규제 / Try16~18 모델 용량,구조 / Try20 스케일, 운영 / Try21~22 각 섹터별 조합
+
+ 
+
