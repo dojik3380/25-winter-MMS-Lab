@@ -1,0 +1,134 @@
+< PINNs Baseline Model >
+512-512 / 256 d0.1 / 128 / 64 / 16 / LeakyReLU / batch 16 / Cosine Decay(3e-4 start) / PW 5e-4(Dynamic) / Adam / ES(100) + ClipNorm
+
+Try 0 : w_sigma=1.0, w_ef=1.0, w_b=0.1, w_c=0.1
+최대오차 - 3.52 / 평균 - 0.35 / 표준편차 - 0.30 / 1오차개수 - 126 / 1.5오차개수 - 48 / 계산실패 - 0
+
+Trt 1 : w_sigma=1.0, w_ef=2.0, w_b=0.1, w_c=0.1
+최대오차 - 3.56 / 평균 - 0.39 / 표준편차 - 0.32 / 1오차개수 - 149 / 1.5오차개수 - 50 / 계산실패 - 0
+
+Trt 2 : w_sigma=1.0, w_ef=1.0, w_b=0.5, w_c=0.5
+최대오차 - 3.33 / 평균 - 0.35 / 표준편차 - 0.29 / 1오차개수 - 122 / 1.5오차개수 - 40 / 계산실패 - 0
+
+Trt 3 : w_sigma=0.5, w_ef=0.5, w_b=0.05, w_c=0.05
+최대오차 - 3.53 / 평균 - 0.35 / 표준편차 - 0.32 / 1오차개수 - 109 / 1.5오차개수 - 42 / 계산실패 - 0
+
+Trt 4 : w_sigma=0.3, w_ef=0.3, w_b=0.5, w_c=0.5
+최대오차 - 3.72 / 평균 - 0.37 / 표준편차 - 0.35 / 1오차개수 - 181 / 1.5오차개수 - 45 / 계산실패 - 0
+
+탐색 -> 폴드 : 5번 / 트라이얼 : 50회
+
+Try 5~6 탐색 범위 : ('w_sigma', 0.1, 1.5), ('w_ef', 0.1, 2.0), ('w_b', 0.01, 0.8), ('w_c', 0.01, 0.8)
+
+Trt 5 (5 fold, Try 50): {'w_sigma': 0.4106311697292545, 'w_ef': 1.0614259885590775, 'w_b': 0.4887607421410568, 'w_c': 0.11235588878917695}.
+최대오차 - 3.38 / 평균 - 0.36 / 표준편차 - 0.32 / 1오차개수 - 116 / 1.5오차개수 - 45 / 계산실패 - 0
+
+Try 6 (5 fold, Try 50): {'w_sigma': 1.1093856953030197, 'w_ef': 0.1702510845078352, 'w_b': 0.010027930772010224, 'w_c': 0.14978433060634835}
+최대오차 - 3.66 / 평균 - 0.35 / 표준편차 - 0.31 / 1오차개수 - 123 / 1.5오차개수 - 43 / 계산실패 - 0
+
+Try 7 (5 fold, Try 50) : Optuna Best Weights
+탐색 범위 : ('w_sigma', 0.4, 1.9), ('w_ef', 0.2, 1.5), ('w_b', 0.05, 0.6), ('w_c', 0.05, 0.6)
+fold_score = (count_over_1_5 * 20) + (count_over_1_0 * 10) + (severe_penalty)
+ - w_sigma: 0.426783 - w_ef: 1.018320 - w_b: 0.393003 - w_c: 0.520824
+최대오차 - 3.38 / 평균 - 0.36 / 표준편차 - 0.33 / 1오차개수 - 146 / 1.5오차개수 - 42 / 계산실패 - 0
+
+Try 8 (5 fold, Try 50) : Optuna Best Weights
+탐색 범위 ('w_sigma', 0.3, 0.8), ('w_ef', 0.1, 0.6), ('w_b', 0.2, 0.7), ('w_c', 0.2, 0.7)
+fold_score = (count_over_1_5 * 10) + (count_over_1_0 * 40) + (severe_penalty * 2)
+ - w_sigma: 0.426783 - w_ef: 1.018320 - w_b: 0.393003 - w_c: 0.520824
+최대오차 - 3.44 / 평균 - 0.41 / 표준편차 - 0.38 / 1오차개수 - 270 / 1.5오차개수 - 84 / 계산실패 - 0
+
+탐색 -> 폴드 : 3번 / 트라이얼 : 20회
+로그 스케일 로스
+Try 9 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.4, 1.0), ('w_ef', 0.3, 0.9), ('w_b', 0.01, 0.4), ('w_c', 0.01, 0.4)
+fold_score = ( 
+                (float(count_over_1_5) * 10.0) + 
+                (float(count_over_1_0) * 40.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+- w_sigma: 0.592248 - w_ef: 0.467597 - w_b: 0.099800 - w_c: 0.354279
+최대오차 - 3.13 / 평균 - 0.33 / 표준편차 - 0.29 / 1오차개수 - 104 / 1.5오차개수 - 41 / 계산실패 - 0
+
+Try 10 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.5, 0.7), ('w_ef', 0.4, 0.6), ('w_b', 0.05, 0.2), ('w_c', 0.25, 0.45)
+fold_score = ( 
+                (float(count_over_1_5) * 10.0) + 
+                (float(count_over_1_0) * 40.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+ - w_sigma: 0.685022 - w_ef: 0.569702 - w_b: 0.087944 - w_c: 0.281826
+최대오차 - 3.24 / 평균 - 0.33 / 표준편차 - 0.30 / 1오차개수 - 93 / 1.5오차개수 - 45 / 계산실패 - 0
+
+Try 11 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.5, 0.7), ('w_ef', 0.4, 0.6), ('w_b', 0.05, 0.2), ('w_c', 0.25, 0.45)
+fold_score = ( 
+                (float(count_over_1_5) * 30.0) + 
+                (float(count_over_1_0) * 40.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+ - w_sigma: 0.516567 - w_ef: 0.554219 - w_b: 0.082366 - w_c: 0.282110
+최대오차 - 3.78 / 평균 - 0.35 / 표준편차 - 0.34 / 1오차개수 - 121 / 1.5오차개수 - 47 / 계산실패 - 0
+
+Try 12 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.5, 0.7), ('w_ef', 0.4, 0.6), ('w_b', 0.05, 0.2), ('w_c', 0.25, 0.45)
+fold_score = ( 
+                (float(count_over_1_5) * 30.0) + 
+                (float(count_over_1_0) * 40.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+ - w_sigma: 0.590768 - w_ef: 0.479500 - w_b: 0.096660 - w_c: 0.325765
+최대오차 - 3.62 / 평균 - 0.34 / 표준편차 - 0.31 / 1오차개수 - 117 / 1.5오차개수 - 53 / 계산실패 - 0
+Optuna Batch Size 16 -> 32
+
+Try 13 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.5, 0.7), ('w_ef', 0.4, 0.6), ('w_b', 0.05, 0.2), ('w_c', 0.25, 0.45)
+fold_score = ( 
+                (float(count_over_1_5) * 10.0) + 
+                (float(count_over_1_0) * 40.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+ - w_sigma: 0.531866 - w_ef: 0.486598 - w_b: 0.157187 - w_c: 0.446818
+최대오차 - 3.49 / 평균 - 0.34 / 표준편차 - 0.32 / 1오차개수 - 97 / 1.5오차개수 - 49 / 계산실패 - 0
+Optuna Batch Size 16 -> 32
+
+Try 14 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.5, 0.7), ('w_ef', 0.4, 0.6), ('w_b', 0.05, 0.2), ('w_c', 0.25, 0.45)
+fold_score = ( 
+                (float(count_over_1_5) * 10.0) + 
+                (float(count_over_1_0) * 40.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+ - w_sigma: 0.513579 - w_ef: 0.571354 - w_b: 0.177285 - w_c: 0.424112
+최대오차 - 3.56 / 평균 - 0.34 / 표준편차 - 0.31 / 1오차개수 - 110 / 1.5오차개수 - 45 / 계산실패 - 0
+LR 2e-4
+
+
+Try 15 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.5, 0.7), ('w_ef', 0.4, 0.6), ('w_b', 0.05, 0.2), ('w_c', 0.25, 0.45)
+fold_score = ( 
+                (float(count_over_1_5) * 10.0) + 
+                (float(count_over_1_0) * 60.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+ - w_sigma: 0.512412 - w_ef: 0.557003 - w_b: 0.198116 - w_c: 0.351914
+최대오차 - 3.06 / 평균 - 0.35 / 표준편차 - 0.30 / 1오차개수 - 106 / 1.5오차개수 - 40 / 계산실패 - 0
+
+Try 16 (3 fold, Try 20) : Optuna Best Weights 
+탐색 범위 ('w_sigma', 0.45, 0.75), ('w_ef', 0.4, 0.6), ('w_b', 0.05, 0.25), ('w_c', 0.25, 0.45)
+fold_score = ( 
+                (float(count_over_1_5) * 10.0) + 
+                (float(count_over_1_0) * 40.0) + 
+                (float(severe_penalty) * 2.0) + 
+                (float(np.mean(row_log_mae)) * 10.0)
+            )      
+ - w_sigma: 0.512412 - w_ef: 0.557003 - w_b: 0.198116 - w_c: 0.351914
+최대오차 - 3.43 / 평균 - 0.37 / 표준편차 - 0.32 / 1오차개수 - 145 / 1.5오차개수 - 48 / 계산실패 - 0
+epochs 500
